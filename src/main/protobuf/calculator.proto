@@ -1,0 +1,29 @@
+syntax = "proto3";
+package akka.demo;
+
+option java_package = "com.github.phisgr.akka.demo.proto";
+
+message AddRandom {
+    int32 lower_bound = 1;
+    int32 upper_bound = 2;
+    int32 added = 3;
+}
+
+message CalculatorEvent {
+    int64 time = 1;
+
+    oneof event {
+        int32 add = 2;
+        int32 mul = 3;
+        int32 div = 4;
+
+        int32 setTo = 5;
+
+        AddRandom add_random = 6;
+    }
+}
+
+message CalculatorSnapshot {
+    int64 time = 1;
+    int32 current_value = 2;
+}
